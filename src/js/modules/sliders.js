@@ -3,8 +3,8 @@ const sliders = (slides, dir, prev, next) => {
         paused = false;
 
     const items = document.querySelectorAll(slides);
-
-    function showSlides (n) {
+          
+    function showSlides(n) {
         if (n > items.length) {
             slideIndex = 1;
         }
@@ -18,12 +18,12 @@ const sliders = (slides, dir, prev, next) => {
             item.style.display = "none";
         });
 
-        items[slideIndex - 1].style.display = "block";
+        items[slideIndex - 1].style.display = 'block';
     }
 
     showSlides(slideIndex);
 
-    function plusSlides (n) {
+    function plusSlides(n) {
         showSlides(slideIndex += n);
     }
 
@@ -31,30 +31,30 @@ const sliders = (slides, dir, prev, next) => {
         const prevBtn = document.querySelector(prev),
               nextBtn = document.querySelector(next);
 
-              prevBtn.addEventListener('click', () => {
-                plusSlides(-1);
-                items[slideIndex - 1].classList.remove('slideInLeft');
-                items[slideIndex - 1].classList.add('slideInRight');
-              });
+        prevBtn.addEventListener('click', () => {
+            plusSlides(-1);
+            items[slideIndex - 1].classList.remove('slideInLeft');
+            items[slideIndex - 1].classList.add('slideInRight');
+        });
 
-              nextBtn.addEventListener('click', () => {
-                plusSlides(1);
-                items[slideIndex - 1].classList.remove('slideInRight');
-                items[slideIndex - 1].classList.add('slideInLeft');
-              });
-    } catch (e){}
+        nextBtn.addEventListener('click', () => {
+            plusSlides(1);
+            items[slideIndex - 1].classList.remove('slideInRight');
+            items[slideIndex - 1].classList.add('slideInLeft');
+        });
+    } catch(e){}
 
-    function activateAnimation () {
-        if (dir === "vertical") {
-            paused = setInterval(function () {
+    function activateAnimation() {
+        if (dir === 'vertical') {
+            paused = setInterval(function() {
                 plusSlides(1);
                 items[slideIndex - 1].classList.add('slideInDown');
             }, 3000);
         } else {
-            paused = setInterval(function () {
+            paused = setInterval(function() {
                 plusSlides(1);
-                items[slideIndex - 1].classList.remove('slideInLeft');
-                items[slideIndex - 1].classList.add('slideInRight');
+                items[slideIndex - 1].classList.remove('slideInRight');
+                items[slideIndex - 1].classList.add('slideInLeft');
             }, 3000);
         }
     }
@@ -66,5 +66,7 @@ const sliders = (slides, dir, prev, next) => {
     items[0].parentNode.addEventListener('mouseleave', () => {
         activateAnimation();
     });
+
 };
+
 export default sliders;
